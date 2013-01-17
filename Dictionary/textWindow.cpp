@@ -1,0 +1,91 @@
+#include"textWindow.h"
+
+TextWin::TextWin(QWidget* parent):QWidget(parent)
+{
+	unknown_word=new QTableWidget(0,3);
+	unknown_word->setColumnWidth(0,75);
+	unknown_word->setColumnWidth(1,260);
+	unknown_word->setColumnWidth(2,75);
+	delete_word=new QPushButton("É¾³ý");
+	add_word=new QPushButton("±à¼­");
+	save=new QPushButton("±£´æ");
+	exit=new QPushButton("ÍË³ö");
+	QHBoxLayout* hlayout1 = new QHBoxLayout;
+	hlayout1->addWidget(unknown_word);
+	QHBoxLayout* hlayout2 = new QHBoxLayout;
+	hlayout2->addWidget(add_word);
+	hlayout2->addWidget(delete_word);
+	hlayout2->addWidget(save);
+	hlayout2->addWidget(exit);
+	QVBoxLayout* vlayout = new QVBoxLayout;
+	vlayout->addLayout(hlayout1);
+	vlayout->addLayout(hlayout2);
+	setLayout(vlayout);
+	setWindowTitle("Éú´Ê¿â");
+	setMinimumSize(450,330);
+	word_display();
+	connect(exit,SIGNAL(clicked()),this,SLOT(close()));
+	connect(delete_word,SIGNAL(clicked()),this,SLOT(delete_fun()));
+	
+}
+void TextWin::word_display()
+{
+	 int i=0,j=0;
+	 QFile file("study.txt"); 
+   if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        	 return;
+   QTextStream in(&file);
+   QString line1,line2,linedate;
+		while (!in.atEnd())
+		{
+			int r=unknown_word->rowCount();
+			if(i>=r) unknown_word->insertRow(i);
+			QTableWidgetItem* item1=new QTableWidgetItem; 
+			line1 = in.readLine();		
+			item1->setText(line1);
+			unknown_word->setItem(i,j++,item1);
+			QTableWidgetItem* item2=new QTableWidgetItem; 
+			line2 = in.readLine();
+			item2->setText(line2);
+			unknown_word->setItem(i,j++,item2);
+			QTableWidgetItem* itemdate=new QTableWidgetItem; 
+			linedate= in.readLine();
+			itemdate->setText(linedate);
+			unknown_word->setItem(i,j++,itemdate);
+			if(j>=3) 
+				j=0;
+			i++;
+		}
+		file.close();
+}
+void TextWin::delete_fun()
+{
+ 		int del;
+		del=unknown_word->currentRow();
+		unknown_word->removeRow(del);
+		save_fun();
+}
+void TextWin::save_fun()
+{
+	QFile file("study.txt"); 
+   if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        	 return;
+   QTextStream in(&file);
+   QTableWidgetItem* temp_item=new QTableWidgetItem;
+   QString str;
+   int i=0,j=0;
+   while(1)
+   {
+   		temp_item=unknown_word->item(i,j);
+   		if(temp_item==0)
+   			break;
+   		str=temp_item->text();
+   		in <<str<<'\n';
+			j++;
+			if(j>=3)
+			{
+				j=0;
+				i++;
+			}
+   }
+}
