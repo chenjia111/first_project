@@ -1,0 +1,25 @@
+#ifndef TEXTWINDOW_H
+#define TEXTWINDOW_H
+
+#include<QApplication>
+#include<QtGui>
+
+class TextWin :public QWidget
+{
+Q_OBJECT
+public:
+	TextWin(QWidget* parent=0);
+	void word_display();
+private:
+	QTableWidget* unknown_word;
+	QPushButton*	delete_word;
+	QPushButton*	add_word;
+	QPushButton*	save;
+	QPushButton*	exit;
+private slots:
+	void delete_fun();
+//	add_fun();
+		void save_fun();
+};
+
+#endif

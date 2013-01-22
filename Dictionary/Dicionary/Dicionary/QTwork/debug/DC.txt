@@ -1,0 +1,16 @@
+
+apple	苹果；苹果树
+pear	梨（树）
+orange	桔子；橙黄色
+peach	桃子；美人
+animal	动物；兽性；粗野残暴的人
+watermelon	西瓜
+bee	蜜蜂
+car	小汽车
+bus	公共汽车，巴士
+doctor	医生，大夫；博士；医疗；修理
+fun	乐趣；有趣的事
+hello	喂
+quick	快的，迅速的；敏感的；灵活的, 灵敏的; 伶俐的, 机警的
+move	移动; 搬动；搬家, 迁移；进展, 前进, 展开
+

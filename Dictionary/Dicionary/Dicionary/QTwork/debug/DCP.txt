@@ -1,0 +1,15 @@
+orange
+orange	桔子；橙黄色
+2012 10 31  
+peach
+peach	桃子；美人
+2012 10 31  
+bee
+bee	蜜蜂
+2012 10 31  
+bus
+bus	公共汽车，巴士
+2012 10 31  
+work
+work          工作
+2012 10 31  
